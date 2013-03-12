@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1360589450 source:/home/arpith/United/lab/cg/p2_mesh/main.cpp
+	<iostream>
+	<stdlib.h>
+	<GL/glut.h>
+

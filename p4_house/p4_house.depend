@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1362967755 source:/home/arpith/United/lab/cg/p4_house/main.cpp
+	<iostream>
+	<GL/glut.h>
+	<GL/glu.h>
+	<math.h>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1362234418 source:/home/arpith/United/lab/cg/p3_cylinder_parallelpiped/main.cpp
+	<GL/glut.h>
+	<math.h>
+	<stdio.h>
+
