@@ -1,6 +1,0 @@
-# depslib dependency file v1.0
-1362672466 source:/home/arpith/United/lab/cg/p5_lineclipping/main.cpp
-	<iostream>
-	<stdio.h>
-	<GL/glut.h>
-
