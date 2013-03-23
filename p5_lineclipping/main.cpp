@@ -1,18 +1,21 @@
-#include <iostream>
 #include<stdio.h>
+#include<iostream>
 #include<GL/glut.h>
-#define outcode int
 
 using namespace std;
 
-int n_of_lines;
+#define outcode int
+
 double xmin=50,ymin=50,xmax=100,ymax=100;
 double xvmin=200,yvmin=200,xvmax=300,yvmax=300;
-double x0[5],y0[5],x1[5],y1[5];
-const int RIGHT=2;
-const int LEFT=1;
-const int TOP=8;
-const int BOTTOM=4;
+double x00,y00,x10,y10;
+double x01,y01,x11,y11;
+double x02,y02,x12,y12;
+double x03,y03,x13,y13;
+const int RIGHT=8;
+const int LEFT=2;
+const int TOP=4;
+const int BOTTOM=1;
 
 outcode ComputeOutCode(double x, double y);
 
@@ -110,13 +113,22 @@ void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(1.0,0.0,0.0);
-	for(int i=0; i<n_of_lines; i++)
-	{
-		glBegin(GL_LINES);
-		glVertex2d(x0[i],y0[i]);
-		glVertex2d(x1[i],y1[i]);
-		glEnd();
-	}
+	glBegin(GL_LINES);
+	glVertex2d(x00,y00);
+	glVertex2d(x10,y10);
+	glEnd();
+	glBegin(GL_LINES);
+	glVertex2d(x01,y01);
+	glVertex2d(x11,y11);
+	glEnd();
+	glBegin(GL_LINES);
+	glVertex2d(x02,y02);
+	glVertex2d(x12,y12);
+	glEnd();
+	glBegin(GL_LINES);
+	glVertex2d(x03,y03);
+	glVertex2d(x13,y13);
+	glEnd();
 	glColor3f(0.0,0.0,1.0);
 	glBegin(GL_LINE_LOOP);
 	glVertex2f(xmin, ymin);
@@ -124,10 +136,10 @@ void display()
 	glVertex2f(xmax, ymax);
 	glVertex2f(xmin, ymax);
 	glEnd();
-	for(int i=0; i<n_of_lines; i++)
-	{
-		CohenSutherland(x0[i],y0[i],x1[i],y1[i]);
-	}
+	CohenSutherland(x00,y00,x10,y10);
+	CohenSutherland(x01,y01,x11,y11);
+	CohenSutherland(x02,y02,x12,y12);
+	CohenSutherland(x03,y03,x13,y13);
 	glFlush();
 }
 
@@ -139,15 +151,16 @@ void myinit()
 	gluOrtho2D(0.0,499.0,0.0,499.0);
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
-	cout<<"Enter the number of lines: ";
-	cin>>n_of_lines;
-	for(int i=0; i<n_of_lines; i++)
-	{
-		cout<<"\nEnter the coordinates of line "<<i+1<<endl;
-		cin>>x0[i]>>y0[i]>>x1[i]>>y1[i];
-	}
+	cout<<"Enter the endpoints of the line1:\n";
+	cin>>x00>>y00>>x10>>y10;
+	cout<<"Enter the endpoints of the line2:\n";
+	cin>>x01>>y01>>x11>>y11;
+	cout<<"Enter the endpoints of the line3:\n";
+	cin>>x02>>y02>>x12>>y12;
+	cout<<"Enter the endpoints of the line4:\n";
+	cin>>x03>>y03>>x13>>y13;
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
 	glutInitWindowSize(500,500);
@@ -156,4 +169,5 @@ int main(int argc, char** argv)
 	myinit();
 	glutDisplayFunc(display);
 	glutMainLoop();
+	return 0;
 }
