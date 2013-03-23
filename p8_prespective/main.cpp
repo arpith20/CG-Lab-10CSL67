@@ -34,7 +34,7 @@ void colorcube()
 
 static GLfloat theta[]= {0.0,0.0,0.0};
 static GLint axis=2;
-static GLdouble viewer[]={0,0,5};
+static GLdouble viewer[]= {0,0,5};
 
 void display()
 {
@@ -49,33 +49,30 @@ void display()
 	glutSwapBuffers();
 }
 
-void spincube()
-{
-	theta[axis]+=1.0;
-	if(theta[axis]>360.0)
-		theta[axis]-=360.0;
-	display();
-	glutPostRedisplay();
-}
 
 void keyboard(unsigned char key, int x, int y)
 {
-        if(key=='x')    viewer[0]-=1;
-        if(key=='X')    viewer[0]+=1;
-        if(key=='y')    viewer[1]-=1;
-        if(key=='Y')    viewer[1]+=1;
-        if(key=='z')    viewer[2]-=1;
-        if(key=='Z')    viewer[2]+=1;
+	if(key=='x')    viewer[0]-=1;
+	if(key=='X')    viewer[0]+=1;
+	if(key=='y')    viewer[1]-=1;
+	if(key=='Y')    viewer[1]+=1;
+	if(key=='z')    viewer[2]-=1;
+	if(key=='Z')    viewer[2]+=1;
+	display();
 }
 
 void mouse(int button, int state, int x, int y)
 {
 	if(button==GLUT_LEFT_BUTTON && state==GLUT_DOWN)
-                axis=0;
+		axis=0;
 	if(button==GLUT_MIDDLE_BUTTON && state==GLUT_DOWN)
 		axis=1;
 	if(button==GLUT_RIGHT_BUTTON && state==GLUT_DOWN)
 		axis=2;
+	theta[axis]+=1.0;
+	if(theta[axis]>360.0)
+		theta[axis]-=360.0;
+	display();
 }
 
 void myreshape(int w, int h)
@@ -91,7 +88,7 @@ void myreshape(int w, int h)
 	glMatrixMode(GL_MODELVIEW);
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB|GLUT_DEPTH);
@@ -100,7 +97,6 @@ int main(int argc, char *argv[])
 	glutReshapeFunc(myreshape);
 	glutKeyboardFunc(keyboard);
 	glutDisplayFunc(display);
-	glutIdleFunc(spincube);
 	glutMouseFunc(mouse);
 	glEnable(GL_DEPTH_TEST);
 	glutMainLoop();
