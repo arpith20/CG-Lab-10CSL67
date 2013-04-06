@@ -8,10 +8,11 @@ using namespace std;
 
 double xmin=50,ymin=50,xmax=100,ymax=100;
 double xvmin=200,yvmin=200,xvmax=300,yvmax=300;
-double x00,y00,x10,y10;
-double x01,y01,x11,y11;
-double x02,y02,x12,y12;
-double x03,y03,x13,y13;
+
+double x0[10], y0[10];
+double x1[10], y1[10];
+int n,i;
+
 const int RIGHT=8;
 const int LEFT=2;
 const int TOP=4;
@@ -114,20 +115,11 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(1.0,0.0,0.0);
 	glBegin(GL_LINES);
-	glVertex2d(x00,y00);
-	glVertex2d(x10,y10);
-	glEnd();
-	glBegin(GL_LINES);
-	glVertex2d(x01,y01);
-	glVertex2d(x11,y11);
-	glEnd();
-	glBegin(GL_LINES);
-	glVertex2d(x02,y02);
-	glVertex2d(x12,y12);
-	glEnd();
-	glBegin(GL_LINES);
-	glVertex2d(x03,y03);
-	glVertex2d(x13,y13);
+	for(i=0;i<n;i++)
+	{
+	        glVertex2d(x0[i],y0[i]);
+                glVertex2d(x1[i],y1[i]);
+	}
 	glEnd();
 	glColor3f(0.0,0.0,1.0);
 	glBegin(GL_LINE_LOOP);
@@ -136,10 +128,8 @@ void display()
 	glVertex2f(xmax, ymax);
 	glVertex2f(xmin, ymax);
 	glEnd();
-	CohenSutherland(x00,y00,x10,y10);
-	CohenSutherland(x01,y01,x11,y11);
-	CohenSutherland(x02,y02,x12,y12);
-	CohenSutherland(x03,y03,x13,y13);
+	for(i=0;i<n;i++)
+                CohenSutherland(x0[i],y0[i],x1[i],y1[i]);
 	glFlush();
 }
 
@@ -153,14 +143,13 @@ void myinit()
 
 int main(int argc, char* argv[])
 {
-	cout<<"Enter the endpoints of the line1:\n";
-	cin>>x00>>y00>>x10>>y10;
-	cout<<"Enter the endpoints of the line2:\n";
-	cin>>x01>>y01>>x11>>y11;
-	cout<<"Enter the endpoints of the line3:\n";
-	cin>>x02>>y02>>x12>>y12;
-	cout<<"Enter the endpoints of the line4:\n";
-	cin>>x03>>y03>>x13>>y13;
+        cout<<"Enter the number of lines: ";
+        cin>>n;
+        for(i=0;i<n;i++)
+        {
+                cout<<"Enter the endpoints for line"<<i+1<<":\n";
+                cin>>x0[i]>>y0[i]>>x1[i]>>y1[i];
+        }
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
 	glutInitWindowSize(500,500);

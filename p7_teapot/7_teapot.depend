@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1365224864 source:/home/arpith/United/lab/cg/7_teapot/main.cpp
+	<iostream>
+	<GL/glut.h>
+
