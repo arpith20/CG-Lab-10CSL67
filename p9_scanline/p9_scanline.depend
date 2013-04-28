@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1367115744 source:/home/arpith/United/lab/cg/p9_scanline/main.cpp
+	<iostream>
+	<GL/glut.h>
+
