@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1369472720 source:/home/arpith/United/lab/practice/p4/main.cpp
+	<iostream>
+	<GL/glut.h>
+
+1369472761 source:/home/arpith/United/lab/cg/p4_house_short/main.cpp
+	<iostream>
+	<GL/glut.h>
+
