@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1369472523 source:/home/arpith/United/lab/practice/p6/main.cpp
+	<iostream>
+	<GL/glut.h>
+	<math.h>
+
+1369472771 source:/home/arpith/United/lab/cg/p6_cyl_pllpd_short/main.cpp
+	<iostream>
+	<GL/glut.h>
+	<math.h>
+
